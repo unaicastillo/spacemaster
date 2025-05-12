@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Game</title>
+    <link rel="stylesheet" href="/space-game/style.css">
+</head>
+
+<body>
+
+    <!-- Contenedor principal del juego -->
+    <div class="game">
+
+        <!-- Lienzo donde se dibujará el juego con JavaScript -->
+        <canvas id="canvas"></canvas>
+
+        <!-- Contenedor para mostrar la puntuación del jugador -->
+        <span class="score-container">
+            PUNTUACION:
+            <span class="score">0</span> <!-- Se actualizará dinámicamente con JS -->
+        </span>
+
+        <!-- pantalla inicial -->
+        <div class="menu">
+            <h2>SPACE GAME</h2>
+
+            <!-- Botón de inicio del juego con un icono de "play" -->
+            <div class="play-game">
+                <ion-icon name="play-outline"></ion-icon>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Imagen de spritesheet oculta, usada en el juego para gráficos -->
+    <img hidden id="spritesheet" src="/space-game/spaceShooter2_spritesheet.png" alt="spritesheet">
+
+    <!-- Importa el script principal del juego -->
+    <script src="/space-game/scripts/script.js" type="module"></script>
+
+    <!-- Importa la librería Ionicons para los iconos -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    
+
+</body>
+
+</html>

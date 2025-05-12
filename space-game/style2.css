@@ -1,0 +1,215 @@
+/*Estilos para la pagina de instrucciones*/
+body {
+    /*parametros para el Body */
+    margin: 0;
+    cursor: crosshair;
+    background: fixed;
+    background-image: url(space.gif);
+    margin-top: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    image-rendering: pixelated;
+    margin-bottom: 0;
+    font-family: "Archivo", sans-serif;
+
+}
+
+/*Parametros para el h2*/
+h2 {
+
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    text-align: center;
+}
+
+/*Parametros para los div que contienen as instrucciones*/
+.instrucciones {
+    font-size: 1rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: fit-content;
+    margin: 20px auto;
+    height: fit-content;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: center;
+}
+
+/*Parametros para el titulo*/
+.titulo {
+    font-size: 2.4rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: fit-content;
+    margin: 20px auto;
+    height: fit-content;
+    display: flex;
+}
+
+/*Parametros para el contenedor principal*/
+.contenedor {
+    margin-top: 0;
+    image-rendering: pixelated;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/*Parametros para el contenedor del boton de inicio*/
+.container {
+    margin-top: 30px;
+}
+
+.imag {
+    /*Da forma al boton de play*/
+    width: 200px;
+    height: 200px;
+    margin: 0px;
+    border-radius: 20px;
+    transition: 0.8s ease;
+}
+
+.imag:hover {
+    width: 230px;
+    height: 230px;
+}
+
+/*Parametros para el enlace a la otra pagina*/
+a {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+/*esto elimina la barra de scroll*/
+::-webkit-scrollbar {
+    display: none;
+}
+
+:root {
+    --shadow-color: #FF9E9E;
+    --shadow-color-light: white;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.p2 {
+    font-size: 15px;
+}
+
+.p1 {
+    margin: calc(1vh - 3px) auto 0 auto;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: "Archivo Black", "Archivo", sans-serif;
+    font-weight: normal;
+    display: block;
+    height: auto;
+    text-align: center;
+    font-size: 10px;
+    color: white;
+    animation: neon 3s infinite;
+}
+
+.logo-1 {
+    color: white;
+    animation: neon 3s infinite;
+}
+
+@keyframes neon {
+    0% {
+        text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
+            0 0 3px var(--shadow-color-light), 0 0 10px var(--shadow-color-light), 0 0 20px var(--shadow-color-light),
+            0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 70px var(--shadow-color), 0 0 100px var(--shadow-color), 0 0 200px var(--shadow-color);
+    }
+
+    50% {
+        text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
+            0 0 5px var(--shadow-color-light), 0 0 15px var(--shadow-color-light), 0 0 25px var(--shadow-color-light),
+            0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 60px var(--shadow-color), 0 0 80px var(--shadow-color), 0 0 110px var(--shadow-color), 0 0 210px var(--shadow-color);
+    }
+
+    100% {
+        text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
+            0 0 3px var(--shadow-color-light), 0 0 10px var(--shadow-color-light), 0 0 20px var(--shadow-color-light),
+            0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 70px var(--shadow-color), 0 0 100px var(--shadow-color), 0 0 200px var(--shadow-color);
+    }
+}
+
+/*Parametros para las instrucciones*/
+.Instruction {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+}
+
+/*Parametros para los div de las instrucciones*/
+.control-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #333;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 120px;
+    transition: 0.3s;
+}
+
+.control-box:hover {
+    background-color: #444;
+}
+
+/*parametros para el div donde va la tecla*/
+.key {
+    background-color: #007bff;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px;
+    width: 50px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/*Aqui van las instrucciones*/
+.action {
+    font-size: 16px;
+    color: white;
+}
+
+/*Un espacio que le he dado para que este todo mejor centrado*/
+.espacioinferior {
+    background-color: #007bff;
+    padding: 10px, 10px;
+}
+
+.estadisticas {
+    margin-top: 0;
+    image-rendering: pixelated;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
