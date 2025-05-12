@@ -30,16 +30,64 @@ const stars = [];
 btnMenu.addEventListener("click",()=>{
     init();
 });
-function gameOver(){//funcion para acabar
-    const puntuacion = score;
+function gameOver() { //funcion para acabar
+    const puntuacion = scoreCount; // Puntuación actual
     const nombre = prompt("Has perdido. Introduce tu nombre de usuario:");
+    const fecha = new Date().toLocaleDateString(); // Fecha actual
+    const hora = new Date().toLocaleTimeString(); // Hora actual
+    const enemigosDerrotados = enemys.length; // Cantidad de enemigos derrotados
+
+    if (nombre) {
+        // Crear o actualizar el archivo XML
+        const parser = new DOMParser();
+        const serializer = new XMLSerializer();
+
+        // Verificar si ya existe un XML en localStorage
+        let xmlString = localStorage.getItem("databaseXML");
+        let xmlDoc;
+
+        if (xmlString) {
+            xmlDoc = parser.parseFromString(xmlString, "application/xml");
+        } else {
+            // Crear un nuevo documento XML si no existe
+            xmlDoc = document.implementation.createDocument("", "estadisticas", null);
+        }
+
+        // Agregar nueva entrada de usuario
+        const usuarioElement = xmlDoc.createElement("usuario");
+        const nombreElement = xmlDoc.createElement("nombre");
+        const puntuacionElement = xmlDoc.createElement("puntuacion");
+        const fechaElement = xmlDoc.createElement("fecha");
+        const horaElement = xmlDoc.createElement("hora");
+        const enemigosElement = xmlDoc.createElement("enemigosDerrotados");
+
+        nombreElement.textContent = nombre;
+        puntuacionElement.textContent = puntuacion;
+        fechaElement.textContent = fecha;
+        horaElement.textContent = hora;
+        enemigosElement.textContent = enemigosDerrotados;
+
+        usuarioElement.appendChild(nombreElement);
+        usuarioElement.appendChild(puntuacionElement);
+        usuarioElement.appendChild(fechaElement);
+        usuarioElement.appendChild(horaElement);
+        usuarioElement.appendChild(enemigosElement);
+        xmlDoc.documentElement.appendChild(usuarioElement);
+
+        // Serializar y guardar en localStorage
+        const updatedXMLString = serializer.serializeToString(xmlDoc);
+        localStorage.setItem("databaseXML", updatedXMLString);
+
+        // Actualizar la tabla
+        cargarEstadisticas();
+    }
 
     hitBox = true;
     play = false;
-    setTimeout(()=>{
+    setTimeout(() => {
         menu.style.display = "flex";
         menuStatus = true;
-    },1500);
+    }, 1500);
 }
 function init(){//funcion inicio de juego
     hitBox = false;
@@ -364,6 +412,48 @@ const guardarEnXML = (user, scoreCount) => {
 
     return esNuevoRecord;
 };
+
+function cargarEstadisticas() {
+    const xmlString = localStorage.getItem("databaseXML");
+    const estadisticasBody = document.getElementById("estadisticas-body");
+
+    if (!xmlString) {
+        estadisticasBody.innerHTML = "<tr><td colspan='5'>No hay datos disponibles</td></tr>";
+        return;
+    }
+
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+    const usuarios = xmlDoc.getElementsByTagName("usuario");
+
+    // Limpiar la tabla antes de agregar nuevas filas
+    estadisticasBody.innerHTML = "";
+
+    // Agregar filas a la tabla
+    Array.from(usuarios).forEach(usuario => {
+        const nombre = usuario.getElementsByTagName("nombre")[0]?.textContent || "N/A";
+        const puntuacion = usuario.getElementsByTagName("puntuacion")[0]?.textContent || "0";
+        const fecha = usuario.getElementsByTagName("fecha")[0]?.textContent || "N/A";
+        const hora = usuario.getElementsByTagName("hora")[0]?.textContent || "N/A";
+        const enemigos = usuario.getElementsByTagName("enemigosDerrotados")[0]?.textContent || "0";
+
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td>${nombre}</td>
+            <td>${puntuacion}</td>
+            <td>${fecha}</td>
+            <td>${hora}</td>
+            <td>${enemigos}</td>
+        `;
+        estadisticasBody.appendChild(fila);
+    });
+}
+
+// Llamar a cargarEstadisticas al inicio
+document.addEventListener("DOMContentLoaded", () => {
+    cargarEstadisticas();
+});
+
 update();
 generateAsteroids();
 generateEnemys();
